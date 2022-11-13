@@ -1,36 +1,31 @@
-import React from 'react';
-import Controls from './Controls/Controls';
+import { useState } from 'react';
 import './Counter.css';
 
-export class Counter extends React.Component {
-  static defaultProps = {
-    initialValue: 0,
+export default function Counter() {
+  const [count, setCount] = useState(100);
+
+  const handleIncrement = () => {
+    setCount(prevState => prevState + 1);
   };
 
-  state = {
-    value: this.props.initialValue,
+  const handleDecrement = () => {
+    setCount(prevState => prevState - 1);
   };
 
-  handleIncrement = () => {
-    this.setState(prevState => ({
-      value: prevState.value + 1,
-    }));
-  };
-
-  handleDecrement = () => {
-    this.setState(prevState => ({ value: prevState.value - 1 }));
-  };
-
-  render() {
-    const { value } = this.state;
-    return (
-      <div className="Counter">
-        <span className="Counter__value">{value}</span>
-        <Controls
-          onIncrement={this.handleIncrement}
-          onDecrement={this.handleDecrement}
-        />
+  return (
+    <div className="Counter">
+      <span className="Counter__value">{count}</span>
+      <div className="Counter__controls">
+        <button type="button" onClick={handleIncrement}>
+          Збільшити на 1
+        </button>
+        <button type="button" onClick={handleDecrement}>
+          Зменшити на 1
+        </button>
       </div>
-    );
-  }
+      <button type="button" onClick={() => setCount(100)}>
+        Reset
+      </button>
+    </div>
+  );
 }

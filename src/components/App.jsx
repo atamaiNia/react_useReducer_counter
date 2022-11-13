@@ -1,10 +1,10 @@
-import { Counter } from './Counter/Counter';
+import Counter from './Counter/Counter';
 
-export const App = () => {
+export default function App() {
   return (
     <div className="container">
       <h1>React - counter</h1>
-      <Counter initialValue={50} />
+      <Counter />
     </div>
   );
-};
+}
